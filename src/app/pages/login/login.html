@@ -1,18 +1,33 @@
 <div class="login-container">
-  <h2>Oi, bem-vindo! 👋</h2>
+  <h2>Hi, WelCome! 👋</h2>
 
   <div class="input-group">
-    <input type="email" placeholder="Seu email" [(ngModel)]="email">
+    <input 
+      type="email" 
+      placeholder="Seu email" 
+      [(ngModel)]="email"
+      (input)="loginError=false"
+    >
   </div>
 
   <div class="input-group">
-    <input type="password" placeholder="Senha secreta" [(ngModel)]="password">
+    <input 
+      type="password" 
+      placeholder="Senha secreta" 
+      [(ngModel)]="password"
+      (input)="loginError=false"
+    >
   </div>
 
-  <button (click)="login()">ENTRAR AGORA! 🚀</button>
+  <button (click)="login()">JOIN NOW! 🚀</button>
+
+  <!-- Mensagem de erro -->
+@if (loginError) {
+  <p class="error">Incorrect email or password ❌</p>
+}
 
   <div class="register-link">
-    Ainda não tem conta? 
-    <a routerLink="/register">Cadastrar</a>
+    DONT HAVE AN ACCOUNT? 
+    <a routerLink="/register">SIGN UP</a>
   </div>
 </div>

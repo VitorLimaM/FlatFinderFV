@@ -1,2 +1,15 @@
-<h2>Welcome!</h2>
+<!-- src/app/pages/home/home.html -->
+<h1>Welcome, {{ user.name || 'Guest' }}!</h1>
+
+<a routerLink="/new-flat">Add New Flat</a>
 <button (click)="logout()">Logout</button>
+
+<h2>List of Flats</h2>
+<ul>
+  <li *ngFor="let flat of flats">
+    <strong>{{ flat.name }}</strong> - {{ flat.address }} -
+    Rooms: {{ flat.rooms }} - Price: ${{ flat.price }}
+  </li>
+</ul>
+
+<button (click)="goToEdit()">Edit Profile</button>

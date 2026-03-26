@@ -1,4 +1,4 @@
-/* login.css - Estilo Cartoon Divertido */
+
 
 body {
   margin: 0;
@@ -117,7 +117,7 @@ button:active {
   text-decoration: underline wavy;
 }
 
-/* Bolinhas decorativas */
+
 .login-container::after {
   content: '🎨';
   position: absolute;
@@ -126,3 +126,4 @@ button:active {
   font-size: 45px;
   opacity: 0.7;
 }
+

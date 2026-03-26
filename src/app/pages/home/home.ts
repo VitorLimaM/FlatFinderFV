@@ -1,17 +1,33 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth';
-import { Router } from '@angular/router';
+// src/app/pages/home/home.ts
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.html'
+  templateUrl: './home.html',
+  standalone: true,
+  imports: [RouterLink, CommonModule, NgFor],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router) {}
+  flats: any[] = []; // lista de flats
+  user: any = {};    // usuário do localStorage
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    // Carrega flats e usuário do localStorage
+    this.flats = JSON.parse(localStorage.getItem('flats') || '[]');
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+  }
 
   logout() {
-    this.auth.logout();
+    localStorage.removeItem('user');
     this.router.navigate(['/']);
+  }
+
+  goToEdit() {
+    this.router.navigate(['/edit-profile']);
   }
 }

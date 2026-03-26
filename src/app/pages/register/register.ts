@@ -1,22 +1,21 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';   // ← RouterLink adicionado
-import { AuthService } from '../../services/auth';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, RouterLink],        // ← RouterLink adicionado aqui
-  templateUrl: './register.html'   // ou './register.html' conforme seu caso
+  imports: [FormsModule, RouterLink],
+  templateUrl: './register.html',
 })
 export class RegisterComponent {
 
-  name = '';
-  email = '';
-  password = '';
-  confirmPassword = '';
+  name: string = '';
+  email: string = '';
+  password: string = '';
+  confirmPassword: string = '';
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private router: Router) {}
 
   register() {
     if (!this.name || !this.email || !this.password || !this.confirmPassword) {
@@ -37,14 +36,24 @@ export class RegisterComponent {
     }
 
     const users = JSON.parse(localStorage.getItem('users') || '[]');
+
+    // Verifica se email já existe
     if (users.find((u: any) => u.email === this.email)) {
       alert('Email already registered');
       return;
     }
 
-    this.auth.register({ name: this.name, email: this.email, password: this.password });
+    // Salva o novo usuário
+    const newUser = {
+      name: this.name,
+      email: this.email,
+      password: this.password
+    };
 
-    alert('Registration successful!');
-    this.router.navigate(['/home']);
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+
+    alert('Registration successful! 🎉');
+    this.router.navigate(['/']); // volta para o login
   }
 }
