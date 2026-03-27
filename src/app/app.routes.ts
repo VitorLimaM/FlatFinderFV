@@ -3,12 +3,16 @@ import { LoginComponent } from './pages/login/login';
 import { RegisterComponent } from './pages/register/register';
 import { HomeComponent } from './pages/home/home';
 import { NewFlat } from './pages/new-flat/new-flat';
-import { EditProfile } from './pages/edit-profile/edit-profile'; // ⬅️ importar
+import { EditProfile } from './pages/edit-profile/edit-profile'; 
+import { FlatViewComponent } from './pages/view-flat/view-flat';
+import { EditFlatComponent } from './pages/edit-flat/edit-flat';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'new-flat', component: NewFlat },
-  { path: 'edit-profile', component: EditProfile } // ⬅️ nova rota
+  { path: 'edit-profile', component: EditProfile },  
+  { path: 'view-flat/:id', component: FlatViewComponent } ,
+  { path: 'edit-flat/:id', component: EditFlatComponent }
 ];

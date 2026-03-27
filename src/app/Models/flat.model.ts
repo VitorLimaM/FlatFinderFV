@@ -7,7 +7,7 @@ export interface Flat {
   hasAC: boolean;
   yearBuilt: number;
   rentPrice: number;
-  dateAvailable: string;        
+  dateAvailable: Date;        
   ownerId: string;
   ownerFullName?: string;
   ownerEmail?: string;

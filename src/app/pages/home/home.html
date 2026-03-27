@@ -1,15 +1,79 @@
 <!-- src/app/pages/home/home.html -->
-<h1>Welcome, {{ user.name || 'Guest' }}!</h1>
+<div class="container mt-5">
 
-<a routerLink="/new-flat">Add New Flat</a>
-<button (click)="logout()">Logout</button>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Welcome, {{ user.name || 'Guest' }}!</h1>
+    <div>
+      <a routerLink="/new-flat" class="btn btn-success me-2">
+        ➕ Add New Flat
+      </a>
+      <button (click)="logout()" class="btn btn-outline-danger">
+        Logout
+      </button>
+    </div>
+  </div>
 
-<h2>List of Flats</h2>
-<ul>
-  <li *ngFor="let flat of flats">
-    <strong>{{ flat.name }}</strong> - {{ flat.address }} -
-    Rooms: {{ flat.rooms }} - Price: ${{ flat.price }}
-  </li>
-</ul>
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Search Flats</h4>
+    </div>
+    
+    <div class="card-body">
+      <table class="table table-hover table-striped">
+        <thead class="table-light">
+          <tr>
+            <th>City</th>
+            <th>Address</th>
+            <th>Area (m²)</th>
+            <th>Rent Price</th>
+            <th>Date Available</th>
+            <th>AC</th>
+            <th>Owner</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flat of flats">
+            <td>{{ flat.city }}</td>
+            <td>{{ flat.streetName }} {{ flat.streetNumber }}</td>
+            <td>{{ flat.areaSize }} m²</td>
+            <td><strong>${{ flat.rentPrice | number:'1.0-0' }}</strong></td>
+            <td>{{ flat.dateAvailable | date:'mediumDate' }}</td>
+            <td>
+              <span class="badge" [class.bg-success]="flat.hasAC" [class.bg-secondary]="!flat.hasAC">
+                {{ flat.hasAC ? 'Yes' : 'No' }}
+              </span>
+            </td>
+            <td>{{ flat.ownerName || 'Unknown' }}</td>
+            
+            <td>
+              <!-- Botão que abre o Flat View -->
+              <button class="btn btn-primary btn-sm me-2" 
+                      (click)="viewFlat(flat.id)">
+                 View Details
+              </button>
 
-<button (click)="goToEdit()">Edit Profile</button>
+              <!-- Toggle Favourite -->
+              <button class="btn btn-sm" 
+                      [class.btn-outline-success]="!flat.isFavourite"
+                      [class.btn-success]="flat.isFavourite"
+                      (click)="toggleFavourite(flat.id)">
+                {{ flat.isFavourite ? '❤️' : '♡' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="flats.length === 0" class="text-center py-4 text-muted">
+        No flats available yet.
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <button (click)="goToEdit()" class="btn btn-secondary">
+      Edit Profile
+    </button>
+  </div>
+</div>

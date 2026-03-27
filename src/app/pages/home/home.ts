@@ -11,15 +11,37 @@ import { CommonModule, NgFor } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
 
-  flats: any[] = []; // lista de flats
-  user: any = {};    // usuário do localStorage
+  flats: any[] = [];
+  user: any = {};
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    // Carrega flats e usuário do localStorage
     this.flats = JSON.parse(localStorage.getItem('flats') || '[]');
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    // Garante que cada flat tenha um ID (caso ainda não tenha)
+    this.flats.forEach(flat => {
+      if (!flat.id) flat.id = 'flat_' + Date.now() + Math.random();
+    });
+  }
+
+  // ====================== NOVO: Abre o Flat View ======================
+  viewFlat(flatId: string) {
+    this.router.navigate(['/view-flat', flatId]);
+  }
+
+  // ====================== Toggle Favourite (simples por enquanto) ======================
+  toggleFavourite(flatId: string) {
+    const flat = this.flats.find(f => f.id === flatId);
+    if (flat) {
+      flat.isFavourite = !flat.isFavourite;
+      localStorage.setItem('flats', JSON.stringify(this.flats));
+      
+      alert(flat.isFavourite 
+        ? 'Added to favourites ❤️' 
+        : 'Removed from favourites');
+    }
   }
 
   logout() {
