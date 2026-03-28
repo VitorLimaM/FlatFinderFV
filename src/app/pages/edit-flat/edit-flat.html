@@ -11,31 +11,24 @@
           <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
 
             <div class="row">
-              <!-- City -->
               <div class="col-md-6 mb-3">
                 <label class="form-label">City <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" formControlName="city" placeholder="Enter city">
+                <input type="text" class="form-control" formControlName="city">
               </div>
-
-              <!-- Street Name -->
               <div class="col-md-6 mb-3">
                 <label class="form-label">Street Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" formControlName="streetName" placeholder="Enter street name">
+                <input type="text" class="form-control" formControlName="streetName">
               </div>
 
-              <!-- Street Number -->
               <div class="col-md-6 mb-3">
                 <label class="form-label">Street Number <span class="text-danger">*</span></label>
-                <input type="number" class="form-control" formControlName="streetNumber" placeholder="123">
+                <input type="number" class="form-control" formControlName="streetNumber">
               </div>
-
-              <!-- Area Size -->
               <div class="col-md-6 mb-3">
                 <label class="form-label">Area Size (m²) <span class="text-danger">*</span></label>
-                <input type="number" class="form-control" formControlName="areaSize" placeholder="85">
+                <input type="number" class="form-control" formControlName="areaSize">
               </div>
 
-              <!-- Has AC -->
               <div class="col-md-6 mb-3">
                 <label class="form-label">Has Air Conditioning</label>
                 <div class="form-check mt-2">
@@ -44,31 +37,27 @@
                 </div>
               </div>
 
-              <!-- Year Built -->
               <div class="col-md-6 mb-3">
                 <label class="form-label">Year Built <span class="text-danger">*</span></label>
-                <input type="number" class="form-control" formControlName="yearBuilt" placeholder="2020">
+                <input type="number" class="form-control" formControlName="yearBuilt">
               </div>
 
-              <!-- Rent Price -->
               <div class="col-md-6 mb-3">
                 <label class="form-label">Rent Price (per month) <span class="text-danger">*</span></label>
-                <input type="number" class="form-control" formControlName="rentPrice" placeholder="1200">
+                <input type="number" class="form-control" formControlName="rentPrice">
               </div>
 
-              <!-- Date Available -->
               <div class="col-md-6 mb-3">
                 <label class="form-label">Date Available <span class="text-danger">*</span></label>
                 <input type="date" class="form-control" formControlName="dateAvailable">
               </div>
             </div>
 
-            <!-- Buttons -->
             <div class="d-flex gap-3 mt-4">
               <button type="submit" 
                       class="btn btn-success btn-lg"
                       [disabled]="editForm.invalid">
-                <i class="bi bi-save"></i> Update Flat
+                💾 Update Flat
               </button>
 
               <button type="button" 
@@ -77,7 +66,6 @@
                 Cancel
               </button>
             </div>
-
           </form>
         </div>
       </div>

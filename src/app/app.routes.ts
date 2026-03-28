@@ -6,6 +6,7 @@ import { NewFlat } from './pages/new-flat/new-flat';
 import { EditProfile } from './pages/edit-profile/edit-profile'; 
 import { FlatViewComponent } from './pages/view-flat/view-flat';
 import { EditFlatComponent } from './pages/edit-flat/edit-flat';
+import { Myflats } from './pages/myflats/myflats';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'new-flat', component: NewFlat },
   { path: 'edit-profile', component: EditProfile },  
   { path: 'view-flat/:id', component: FlatViewComponent } ,
-  { path: 'edit-flat/:id', component: EditFlatComponent }
+  { path: 'edit-flat/:id', component: EditFlatComponent },
+  { path: 'my-flats', component: Myflats }
 ];

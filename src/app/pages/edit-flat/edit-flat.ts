@@ -1,8 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { FlatService } from '../../flatservice';
-import { Flat } from '../../Models/flat.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,9 +10,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './edit-flat.html',
 })
 export class EditFlatComponent implements OnInit {
+
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  private flatService = inject(FlatService);
   private fb = inject(FormBuilder);
 
   editForm!: FormGroup;
@@ -34,30 +32,37 @@ export class EditFlatComponent implements OnInit {
       dateAvailable: ['', Validators.required]
     });
 
-    // Carregar dados atuais
-    this.flatService.getFlatById(this.flatId).subscribe(flat => {
-      if (flat) {
-        this.editForm.patchValue({
-          ...flat,
-          dateAvailable: flat.dateAvailable instanceof Date 
-            ? flat.dateAvailable.toISOString().split('T')[0] 
-            : flat.dateAvailable
-        });
-      }
-    });
+    // Carrega o flat do localStorage
+    const flats = JSON.parse(localStorage.getItem('flats') || '[]');
+    const flatToEdit = flats.find((f: any) => f.id === this.flatId);
+
+    if (flatToEdit) {
+      this.editForm.patchValue({
+        ...flatToEdit,
+        dateAvailable: flatToEdit.dateAvailable ? 
+          new Date(flatToEdit.dateAvailable).toISOString().split('T')[0] : ''
+      });
+    } else {
+      alert('Flat não encontrado!');
+      this.router.navigate(['/home']);
+    }
   }
 
   onSubmit() {
     if (this.editForm.valid) {
       const updatedFlat = {
         ...this.editForm.value,
+        id: this.flatId,
         dateAvailable: new Date(this.editForm.value.dateAvailable)
       };
 
-      this.flatService.updateFlat(this.flatId, updatedFlat).subscribe(() => {
-        alert('Flat atualizado com sucesso!');
-        this.router.navigate(['/home']);
-      });
+      // Atualiza no localStorage
+      let flats = JSON.parse(localStorage.getItem('flats') || '[]');
+      flats = flats.map((f: any) => f.id === this.flatId ? updatedFlat : f);
+      localStorage.setItem('flats', JSON.stringify(flats));
+
+      alert('Flat updated successfully!');
+      this.router.navigate(['/home']);
     }
   }
 

@@ -3,23 +3,30 @@
 
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Welcome, {{ user.name || 'Guest' }}!</h1>
+    
     <div>
-      <a routerLink="/new-flat" class="btn btn-success me-2">
+      <!-- Botão Add New Flat -->
+      <a routerLink="/new-flat" class="btn btn-primary me-2">
         ➕ Add New Flat
       </a>
-      <button (click)="logout()" class="btn btn-outline-danger">
+
+      <!-- 🔥 NOVO: Botão My Flats -->
+      <a routerLink="/my-flats" class="btn btn-info me-2">
+        🏠 My Flats
+      </a>
+
+      <!-- Logout -->
+      <button class="btn btn-outline-danger" (click)="logout()">
         Logout
       </button>
     </div>
   </div>
 
+  <h3 class="mb-3">Search Flats</h3>
+
   <div class="card shadow-sm">
-    <div class="card-header bg-primary text-white">
-      <h4 class="mb-0">Search Flats</h4>
-    </div>
-    
-    <div class="card-body">
-      <table class="table table-hover table-striped">
+    <div class="card-body p-0">
+      <table class="table table-hover mb-0">
         <thead class="table-light">
           <tr>
             <th>City</th>
@@ -45,15 +52,10 @@
               </span>
             </td>
             <td>{{ flat.ownerName || 'Unknown' }}</td>
-            
             <td>
-              <!-- Botão que abre o Flat View -->
-              <button class="btn btn-primary btn-sm me-2" 
-                      (click)="viewFlat(flat.id)">
-                 View Details
+              <button class="btn btn-primary btn-sm me-2" (click)="viewFlat(flat.id)">
+                View Details
               </button>
-
-              <!-- Toggle Favourite -->
               <button class="btn btn-sm" 
                       [class.btn-outline-success]="!flat.isFavourite"
                       [class.btn-success]="flat.isFavourite"
@@ -64,16 +66,13 @@
           </tr>
         </tbody>
       </table>
-
-      <div *ngIf="flats.length === 0" class="text-center py-4 text-muted">
-        No flats available yet.
-      </div>
     </div>
   </div>
 
-  <div class="mt-3">
-    <button (click)="goToEdit()" class="btn btn-secondary">
+  <div class="mt-4">
+    <button class="btn btn-secondary" (click)="goToEdit()">
       Edit Profile
     </button>
   </div>
+
 </div>
