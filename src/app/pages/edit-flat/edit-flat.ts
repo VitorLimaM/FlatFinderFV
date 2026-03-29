@@ -2,11 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Header } from '../header/header';
 
 @Component({
   selector: 'app-edit-flat',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, Header],
   templateUrl: './edit-flat.html',
 })
 export class EditFlatComponent implements OnInit {

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Header } from '../header/header';
 
 @Component({
   selector: 'app-my-flats',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, Header],
   templateUrl: './myflats.html',
 })
 export class Myflats implements OnInit {

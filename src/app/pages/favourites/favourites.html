@@ -1,17 +1,13 @@
 
 <app-header></app-header>
 
+
 <div class="container mt-5">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>My Flats</h2>
-    <button class="btn btn-success btn-lg" (click)="goToNewFlat()">
-      ➕ Insert New Flat
-    </button>
-  </div>
+  <h2 class="mb-4">Favourites</h2>
 
   <div class="card shadow-sm">
     <div class="card-body">
-      <table class="table table-hover table-striped" *ngIf="myFlats.length > 0; else noFlats">
+      <table class="table table-hover table-striped" *ngIf="favouriteFlats.length > 0; else noFavourites">
         <thead class="table-light">
           <tr>
             <th>City</th>
@@ -20,11 +16,12 @@
             <th>Rent Price</th>
             <th>Date Available</th>
             <th>AC</th>
+            <th>Owner</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let flat of myFlats">
+          <tr *ngFor="let flat of favouriteFlats">
             <td>{{ flat.city }}</td>
             <td>{{ flat.streetName }} {{ flat.streetNumber }}</td>
             <td>{{ flat.areaSize }} m²</td>
@@ -35,27 +32,23 @@
                 {{ flat.hasAC ? 'Yes' : 'No' }}
               </span>
             </td>
+            <td>{{ flat.ownerName || 'Unknown' }}</td>
             <td>
               <button class="btn btn-primary btn-sm me-2" (click)="viewFlat(flat.id)">
                 👁️ View
               </button>
-              <button class="btn btn-warning btn-sm me-2" (click)="editFlat(flat.id)">
-                ✏️ Edit
-              </button>
-              <button class="btn btn-danger btn-sm" (click)="deleteFlat(flat.id)">
-                🗑️ Delete
+              <button class="btn btn-danger btn-sm" (click)="removeFavourite(flat.id)">
+                🗑️ Remove
               </button>
             </td>
           </tr>
         </tbody>
       </table>
 
-      <ng-template #noFlats>
+      <ng-template #noFavourites>
         <div class="text-center py-5 text-muted">
-          <h5>You don't have any flats yet.</h5>
-          <button class="btn btn-success mt-3" (click)="goToNewFlat()">
-            Add your first flat
-          </button>
+          <h5>You don't have any favourite flats yet.</h5>
+          <a routerLink="/home" class="btn btn-primary mt-3">Go to Search Flats</a>
         </div>
       </ng-template>
     </div>

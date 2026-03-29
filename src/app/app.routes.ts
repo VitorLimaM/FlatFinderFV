@@ -7,6 +7,8 @@ import { EditProfile } from './pages/edit-profile/edit-profile';
 import { FlatViewComponent } from './pages/view-flat/view-flat';
 import { EditFlatComponent } from './pages/edit-flat/edit-flat';
 import { Myflats } from './pages/myflats/myflats';
+import { Favourites } from './pages/favourites/favourites';
+
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -16,5 +18,6 @@ export const routes: Routes = [
   { path: 'edit-profile', component: EditProfile },  
   { path: 'view-flat/:id', component: FlatViewComponent } ,
   { path: 'edit-flat/:id', component: EditFlatComponent },
-  { path: 'my-flats', component: Myflats }
+  { path: 'my-flats', component: Myflats },
+  { path: 'favourites', component: Favourites },
 ];

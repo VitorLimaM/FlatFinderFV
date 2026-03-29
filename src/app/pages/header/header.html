@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container">
+
+    <!-- Logo -->
+    <a routerLink="/home" class="navbar-brand fw-bold fs-3">
+      🏠 FlatFinder
+    </a>
+
+    <!-- Saudação -->
+    <span class="navbar-text me-auto ms-4 fs-5">
+      Hello, <strong>{{ currentUser.firstName || currentUser.name || 'User' }}</strong>!
+    </span>
+
+    <!-- Links do Menu -->
+    <ul class="navbar-nav ms-auto align-items-center">
+
+      <li class="nav-item">
+        <a routerLink="/home" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/my-flats" class="nav-link">My Flats</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/favourites" class="nav-link">Favourites</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/profile" class="nav-link">My Profile</a>
+      </li>
+
+      <!-- Só aparece se for Admin -->
+      <li class="nav-item" *ngIf="isAdmin">
+        <a routerLink="/all-users" class="nav-link">All Users</a>
+      </li>
+
+      <li class="nav-item">
+        <button class="nav-link btn btn-link text-white" (click)="logout()">
+          Logout
+        </button>
+      </li>
+
+      <li class="nav-item">
+        <button class="nav-link btn btn-link text-danger" (click)="deleteAccount()">
+          Delete Account
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>

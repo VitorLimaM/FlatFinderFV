@@ -1,11 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Header } from '../header/header';
 
 @Component({
   selector: 'app-flat-view',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Header],
   templateUrl: './view-flat.html',
 })
 export class FlatViewComponent implements OnInit {
