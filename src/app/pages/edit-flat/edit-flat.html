@@ -1,0 +1,78 @@
+
+<app-header></app-header>
+
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+
+      <div class="card shadow-sm">
+        <div class="card-header bg-warning text-dark">
+          <h3 class="mb-0">Edit Flat</h3>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">City <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="city">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Street Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="streetName">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Street Number <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" formControlName="streetNumber">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Area Size (m²) <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" formControlName="areaSize">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Has Air Conditioning</label>
+                <div class="form-check mt-2">
+                  <input class="form-check-input" type="checkbox" formControlName="hasAC" id="hasAC">
+                  <label class="form-check-label" for="hasAC">Yes</label>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Year Built <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" formControlName="yearBuilt">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Rent Price (per month) <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" formControlName="rentPrice">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Date Available <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" formControlName="dateAvailable">
+              </div>
+            </div>
+
+            <div class="d-flex gap-3 mt-4">
+              <button type="submit" 
+                      class="btn btn-success btn-lg"
+                      [disabled]="editForm.invalid">
+                💾 Update Flat
+              </button>
+
+              <button type="button" 
+                      class="btn btn-secondary btn-lg"
+                      (click)="navigateToHome()">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

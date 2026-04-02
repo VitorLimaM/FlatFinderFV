@@ -1,0 +1,94 @@
+
+<app-header></app-header>
+
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">Flat Details</h3>
+        </div>
+
+        <div class="card-body" *ngIf="flat; else noFlat">
+
+          <!-- Property Information -->
+          <h4 class="mb-4">
+            {{ flat.city }}, {{ flat.streetName }} {{ flat.streetNumber }}
+          </h4>
+
+          <table class="table table-striped table-bordered">
+            <tbody>
+              <tr>
+                <th style="width: 40%;">City</th>
+                <td>{{ flat.city }}</td>
+              </tr>
+              <tr>
+                <th>Street Name</th>
+                <td>{{ flat.streetName }}</td>
+              </tr>
+              <tr>
+                <th>Street Number</th>
+                <td>{{ flat.streetNumber }}</td>
+              </tr>
+              <tr>
+                <th>Area Size</th>
+                <td>{{ flat.areaSize }} m²</td>
+              </tr>
+              <tr>
+                <th>Has Air Conditioning</th>
+                <td>
+                  <span class="badge" [class.bg-success]="flat.hasAC" [class.bg-secondary]="!flat.hasAC">
+                    {{ flat.hasAC ? 'Yes' : 'No' }}
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <th>Year Built</th>
+                <td>{{ flat.yearBuilt }}</td>
+              </tr>
+              <tr>
+                <th>Rent Price</th>
+                <td><strong>${{ flat.rentPrice | number:'1.0-0' }}/month</strong></td>
+              </tr>
+              <tr>
+                <th>Date Available</th>
+                <td>{{ flat.dateAvailable | date:'mediumDate' }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Buttons -->
+          <div class="d-flex gap-3 mt-4">
+            <!-- Edit button (only for owner) -->
+            <button *ngIf="isOwner" 
+                    class="btn btn-warning btn-lg"
+                    (click)="editFlat()">
+              <i class="bi bi-pencil-square"></i> Edit Flat
+            </button>
+
+            <!-- Back button -->
+            <button class="btn btn-secondary btn-lg"
+                    (click)="navigateToHome()">
+              <i class="bi bi-arrow-left"></i> Back to Search
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Not found -->
+        <ng-template #noFlat>
+          <div class="card-body text-center py-5">
+            <h5 class="text-muted">Flat not found</h5>
+            <button class="btn btn-secondary mt-3" 
+                    (click)="navigateToHome()">
+              Back to Home
+            </button>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+</div>

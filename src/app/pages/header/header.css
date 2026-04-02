@@ -1,0 +1,114 @@
+
+
+.navbar {
+  background: linear-gradient(90deg, #1e3a8a, #1e40af);   /* Azul escuro elegante */
+  padding: 16px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.navbar-brand {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-brand:hover {
+  color: #60a5fa;
+}
+
+/* Saudação */
+.navbar-text {
+  color: #e0f2fe;
+  font-size: 1.22rem;
+  font-weight: 500;
+  margin-left: 25px;
+}
+
+/* Menu */
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 8px;
+  align-items: center;
+}
+
+.nav-link {
+  color: #f9f9fb;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* Botões Logout e Delete Account */
+.nav-link.btn {
+  padding: 10px 22px;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
+
+/* Logout */
+.nav-link.btn:first-of-type {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #e0f2fe;
+}
+
+.nav-link.btn:first-of-type:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Delete Account */
+.nav-link.btn:last-of-type {
+  background-color: #dc3545;
+  color: white;
+}
+
+.nav-link.btn:last-of-type:hover {
+  background-color: #c82333;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+  .container {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .navbar-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .navbar-text {
+    margin-left: 0;
+    order: -1;
+  }
+}

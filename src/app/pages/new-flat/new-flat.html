@@ -1,0 +1,47 @@
+<h2>New Flat</h2>
+
+<form [formGroup]="flatForm" (ngSubmit)="onSave()">
+
+  <p><strong>City *</strong></p>
+  <input type="text" formControlName="city">
+  <p *ngIf="isInvalid('city')" class="error">City must have at least 2 characters</p>
+
+  <p><strong>Street Name *</strong></p>
+  <input type="text" formControlName="streetName">
+  <p *ngIf="isInvalid('streetName')" class="error">Street name is required</p>
+
+  <p><strong>Street Number *</strong></p>
+  <input type="number" formControlName="streetNumber">
+  <p *ngIf="isInvalid('streetNumber')" class="error">Must be greater than 0</p>
+
+  <p><strong>Area Size (m²) *</strong></p>
+  <input type="number" formControlName="areaSize">
+  <p *ngIf="isInvalid('areaSize')" class="error">Minimum is 10m²</p>
+
+  <p><strong>Year Built *</strong></p>
+  <input type="number" formControlName="yearBuilt">
+  <p *ngIf="isInvalid('yearBuilt')" class="error">Between 1900 and 2026</p>
+
+  <p><strong>Rent Price ($) *</strong></p>
+  <input type="number" formControlName="rentPrice">
+  <p *ngIf="isInvalid('rentPrice')" class="error">Minimum is $100</p>
+
+  <p><strong>Date Available *</strong></p>
+  <input type="date" formControlName="dateAvailable">
+  <p *ngIf="isInvalid('dateAvailable')" class="error">Date is required</p>
+
+  <p>
+    <input type="checkbox" formControlName="hasAC">
+    <strong>Has Air Conditioning</strong>
+  </p>
+
+  <button type="submit">
+    Save Flat
+  </button>
+
+  <!-- erro geral -->
+  <p *ngIf="formError" class="error">
+    Please fix the errors above ❌
+  </p>
+
+</form>

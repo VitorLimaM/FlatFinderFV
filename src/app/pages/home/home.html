@@ -1,0 +1,102 @@
+<app-header></app-header>
+<!-- src/app/pages/home/home.html -->
+<div class="container mt-5">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+      <a routerLink="/new-flat" class="btn btn-primary me-2">➕ Add New Flat</a>
+      <a routerLink="/my-flats" class="btn btn-info me-2">🏠 My Flats</a>
+      <a routerLink="/favourites" class="btn btn-warning me-2">❤️ Favourites</a>
+    </div>
+  </div>
+
+  <h3 class="mb-3">Search Flats</h3>
+
+  
+  <div class="row g-3 mb-4">
+    <div class="col-md-3">
+      <label class="form-label">City</label>
+      <input type="text" class="form-control" [(ngModel)]="filterCity" 
+             (ngModelChange)="applyFilters()" placeholder="Filter by city">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Price Range</label>
+      <div class="input-group">
+        <input type="number" class="form-control" [(ngModel)]="minPrice" 
+               (ngModelChange)="applyFilters()" placeholder="Min">
+        <span class="input-group-text">-</span>
+        <input type="number" class="form-control" [(ngModel)]="maxPrice" 
+               (ngModelChange)="applyFilters()" placeholder="Max">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Area Size Range</label>
+      <div class="input-group">
+        <input type="number" class="form-control" [(ngModel)]="minArea" 
+               (ngModelChange)="applyFilters()" placeholder="Min m²">
+        <span class="input-group-text">-</span>
+        <input type="number" class="form-control" [(ngModel)]="maxArea" 
+               (ngModelChange)="applyFilters()" placeholder="Max m²">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Sort By</label>
+      <select class="form-select" [(ngModel)]="sortBy" (ngModelChange)="applyFilters()">
+        <option value="city">City</option>
+        <option value="price">Price</option>
+        <option value="areaSize">Area Size</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>City</th>
+            <th>Address</th>
+            <th>Area (m²)</th>
+            <th>Rent Price</th>
+            <th>Date Available</th>
+            <th>AC</th>
+            <th>Owner</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flat of filteredFlats">
+            <td>{{ flat.city }}</td>
+            <td>{{ flat.streetName }} {{ flat.streetNumber }}</td>
+            <td>{{ flat.areaSize }} m²</td>
+            <td><strong>${{ flat.rentPrice | number:'1.0-0' }}</strong></td>
+            <td>{{ flat.dateAvailable | date:'mediumDate' }}</td>
+            <td>
+              <span class="badge" [class.bg-success]="flat.hasAC" [class.bg-secondary]="!flat.hasAC">
+                {{ flat.hasAC ? 'Yes' : 'No' }}
+              </span>
+            </td>
+            <td>{{ flat.ownerName || 'Unknown' }}</td>
+            <td>
+              <button class="btn btn-primary btn-sm me-2" (click)="viewFlat(flat.id)">
+                View Details
+              </button>
+             <button class="btn btn-sm" 
+                      [class.btn-outline-success]="!flat.isFavourite"
+                      [class.btn-success]="flat.isFavourite"
+                      (click)="toggleFavourite(flat.id)">
+                {{ flat.isFavourite ? '❤️' : '♡' }}
+            </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="filteredFlats.length === 0" class="text-center py-5 text-muted">
+    No flats match your filters.
+  </div>
+</div>
