@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth';
   standalone: true,
   imports: [FormsModule, RouterLink],
   templateUrl: './register.html',
+  styleUrl: './register.css'
 })
 export class RegisterComponent {
 

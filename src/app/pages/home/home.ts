@@ -8,6 +8,7 @@ import { Header } from '../header/header';
 @Component({
   selector: 'app-home',
   templateUrl: './home.html',
+  styleUrl: './home.css',
   standalone: true,
   imports: [RouterLink, CommonModule, FormsModule, Header],  
 })

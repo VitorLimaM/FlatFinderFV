@@ -1,0 +1,95 @@
+/* ====================== HOME - SEARCH FLATS (PROFESSIONAL) ====================== */
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* Top buttons (Add New Flat, My Flats, Favourites) */
+.d-flex.justify-content-between .btn {
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+}
+
+.d-flex.justify-content-between .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Título Search Flats */
+h3 {
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 1.5rem;
+}
+
+/* Filtros */
+.row.g-3 .form-label {
+    display: flex;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.form-control, .form-select {
+  border-radius: 12px;
+  padding: 14px 16px;
+  border: 1px solid #cbd5e1;
+  transition: all 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+}
+
+/* Card da Tabela */
+.card {
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-body {
+  padding: 0;
+}
+
+/* Tabela */
+.table th {
+  background-color: #f8fafc;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  padding: 18px 14px;
+  color: #475569;
+}
+
+.table td {
+  padding: 18px 14px;
+  vertical-align: middle;
+  font-size: 1.05rem;
+}
+
+/* Botões de Ação */
+.btn-primary.btn-sm {
+  border-radius: px;
+  padding: 8px 16px;
+}
+
+.btn-sm.btn-primary {
+  background-color: #011c45;
+  color: white;
+}
+
+.btn btn-sm btn-primary:hover {
+  background-color: #011c45;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(1, 28, 69, 0.15);
+}
