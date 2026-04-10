@@ -1,0 +1,80 @@
+
+body {
+  background: #f3f4f6;
+  font-family: 'Inter', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #2E2E2E;
+  font-weight: 600;
+}
+
+form {
+  max-width: 420px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+
+div[ng-reflect-ng-if] {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+
+button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+
+button:hover {
+  background: #1d4ed8;
+}
+
+
+button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}

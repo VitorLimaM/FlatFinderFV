@@ -1,0 +1,57 @@
+
+.register-container {
+  max-width: 420px;
+  margin:  auto;
+  padding: 40px 35px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  align-content: center;
+}
+
+h2 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #010513;
+  margin-bottom: 30px;
+}
+
+/* Inputs */
+input {
+  width: 50%;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  outline: none;
+  
+}
+
+input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+}
+
+/* Botões */
+button {
+  width: 53%;
+  padding: 16px;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+button:first-of-type {
+  background: linear-gradient(90deg, #0d6efd, #1e40af);
+  color: white;
+}
+
+

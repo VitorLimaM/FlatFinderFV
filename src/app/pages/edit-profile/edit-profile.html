@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<h1>Edit Profile</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSave()">
+
+  <label>Name:</label>
+  <input type="text" formControlName="name" placeholder="Name">
+  <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+    Name is required.
+  </div>
+
+  <label>Email:</label>
+  <input type="email" formControlName="email" placeholder="Email">
+  <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+    Enter a valid email.
+  </div>
+
+  <label>Password:</label>
+  <input type="password" formControlName="password" placeholder="Password">
+  <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+    Password is required.
+  </div>
+
+  <button type="submit">Save</button>
+</form>

@@ -1,0 +1,19 @@
+<h2>Register</h2>
+
+<input type="text" placeholder="Name" [(ngModel)]="name">
+<input type="email" placeholder="Email" [(ngModel)]="email">
+<input type="password" placeholder="Password" [(ngModel)]="password">
+<input type="password" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+
+<label class="Admin">
+ <br>
+ I WANT TO REGISTER AS ADMIN
+  <input type="checkbox" [(ngModel)]="isAdmin"> 
+</label>
+
+<div *ngIf="isAdmin">
+  <input type="password" placeholder="Admin authorization password" [(ngModel)]="adminPassword">
+</div>
+
+<button (click)="register()">Register</button> <br>
+<button routerLink="/">Back to Login</button>

@@ -1,0 +1,13 @@
+<h2>Admin Panel 👑</h2>
+
+<div *ngFor="let user of users">
+  <p>
+    {{ user.name }} - {{ user.email }} ({{ user.role }})
+  </p>
+
+<button (click)="deleteUser(user.id!)" *ngIf="user.id">
+  Delete ❌
+</button>
+
+  <hr>
+</div>

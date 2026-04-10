@@ -1,0 +1,99 @@
+<app-header></app-header>
+<!-- src/app/pages/home/home.html -->
+<div class="page-container">
+
+  <div class="action-bar">
+    <a routerLink="/new-flat" class="action-btn action-btn-primary">➕ Add New Flat</a>
+    <a routerLink="/my-flats" class="action-btn action-btn-secondary">🏠 My Flats</a>
+    <a routerLink="/favourites" class="action-btn action-btn-accent">❤️ Favourites</a>
+  </div>
+
+  <h3 class="page-title">Search Flats</h3>
+
+  <div class="filter-row">
+    <div class="filter-group">
+      <label class="filter-label">City</label>
+      <input type="text" class="filter-input" [(ngModel)]="filterCity" 
+             (ngModelChange)="applyFilters()" placeholder="Filter by city">
+    </div>
+    <div class="filter-group">
+      <label class="filter-label">Price Range</label>
+      <div class="input-group-wrapper">
+        <input type="number" class="filter-input" [(ngModel)]="minPrice" 
+               (ngModelChange)="applyFilters()" placeholder="Min">
+        <span class="separator">-</span>
+        <input type="number" class="filter-input" [(ngModel)]="maxPrice" 
+               (ngModelChange)="applyFilters()" placeholder="Max">
+      </div>
+    </div>
+    <div class="filter-group">
+      <label class="filter-label">Area Size Range</label>
+      <div class="input-group-wrapper">
+        <input type="number" class="filter-input" [(ngModel)]="minArea" 
+               (ngModelChange)="applyFilters()" placeholder="Min m²">
+        <span class="separator">-</span>
+        <input type="number" class="filter-input" [(ngModel)]="maxArea" 
+               (ngModelChange)="applyFilters()" placeholder="Max m²">
+      </div>
+    </div>
+    <div class="filter-group">
+      <label class="filter-label">Sort By</label>
+      <select class="filter-select" [(ngModel)]="sortBy" (ngModelChange)="applyFilters()">
+        <option value="city">City</option>
+        <option value="price">Price</option>
+        <option value="areaSize">Area Size</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="main-card">
+    <div class="card-body p-0">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>City</th>
+            <th>Address</th>
+            <th>Area (m²)</th>
+            <th>Rent Price</th>
+            <th>Date Available</th>
+            <th>AC</th>
+            <th>Owner</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flat of filteredFlats">
+            <td>{{ flat.city }}</td>
+            <td>{{ flat.streetName }} {{ flat.streetNumber }}</td>
+            <td>{{ flat.areaSize }} m²</td>
+            <td class="price-cell">${{ flat.rentPrice | number:'1.0-0' }}</td>
+            <td>{{ flat.dateAvailable | date:'mediumDate' }}</td>
+            <td>
+              <span class="badge" [class.bg-success]="flat.hasAC" [class.bg-secondary]="!flat.hasAC">
+                {{ flat.hasAC ? 'Yes' : 'No' }}
+              </span>
+            </td>
+            <td>{{ flat.ownerName || 'Unknown' }}</td>
+            <td class="action-cell">
+              <button 
+                class="btn-view btn-sm me-2" 
+                [routerLink]="['/view-flat', flat.id]"> 
+                View Details
+              </button>
+              <button class="fav-btn btn btn-sm" 
+                      [class.btn-outline-success]="!flat.isFavourite"
+                      [class.btn-success]="flat.isFavourite"
+                      (click)="toggleFavourite(flat.id)">
+                {{ flat.isFavourite ? '❤️' : '♡' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="filteredFlats.length === 0" class="empty-state">
+    No flats match your filters.
+  </div>
+</div>

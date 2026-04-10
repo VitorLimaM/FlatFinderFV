@@ -1,0 +1,48 @@
+<nav class="navbar">
+  <div class="container">
+
+    
+    <a routerLink="/home" class="navbar-brand">
+      <img src="/images/transparent-logo.png" alt="FlatFinder Logo" class="logo me-2">
+    </a>
+
+   
+    <span class="navbar-text">
+      Hello, <strong>{{ currentUser.firstName || currentUser.name || 'User' }}</strong>!
+    </span>
+
+    
+    <ul class="navbar-nav ms-auto">
+
+      <li class="nav-item">
+        <a routerLink="/home" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/my-flats" class="nav-link">My Flats</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/favourites" class="nav-link">Favourites</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/edit-profile" class="nav-link">My Profile</a>
+      </li>
+
+      
+      <li class="nav-item" *ngIf="isAdmin">
+        <a routerLink="/all-users" class="nav-link">All Users</a>
+      </li>
+
+      <li class="nav-item">
+        <button class="nav-link" (click)="logout()">
+          Logout
+        </button>
+      </li>
+
+      <li class="nav-item">
+        <button class="nav-link" (click)="deleteAccount()">
+          Delete Account
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>

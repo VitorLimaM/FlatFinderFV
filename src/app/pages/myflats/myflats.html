@@ -1,0 +1,66 @@
+<app-header></app-header>
+
+<div *ngIf="loading" class="text-center mt-5">
+  <p>Loading flats...</p>
+</div>
+
+<div class="page-container" *ngIf="!loading">
+  <div class="page-header">
+    <h2 class="page-title">My Flats</h2>
+    <button class="btn-add" (click)="goToNewFlat()">
+      ➕ Insert New Flat
+    </button>
+  </div>
+
+  <div class="main-card">
+    <div class="card-body">
+      <table class="custom-table" *ngIf="myFlats.length > 0; else noFlats">
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>Address</th>
+            <th>Area (m²)</th>
+            <th>Rent Price</th>
+            <th>Date Available</th>
+            <th>AC</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flat of myFlats">
+            <td>{{ flat.city }}</td>
+            <td>{{ flat.streetName }} {{ flat.streetNumber }}</td>
+            <td>{{ flat.areaSize }} m²</td>
+            <td class="price">{{ flat.rentPrice | number:'1.0-0' }}</td>
+            <td>{{ flat.dateAvailable | date:'mediumDate' }}</td>
+            <td>
+              <span class="status-badge" [class.success]="flat.hasAC" [class.secondary]="!flat.hasAC">
+                {{ flat.hasAC ? 'Yes' : 'No' }}
+              </span>
+            </td>
+            <td class="actions">
+              <button class="btn-view" (click)="viewFlat(flat.id)">
+                 View
+              </button>
+              <button class="btn-edit" (click)="editFlat(flat.id)">
+                 Edit
+              </button>
+              <button class="btn-delete" (click)="deleteFlat(flat.id)">
+                 Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #noFlats>
+        <div class="empty-state">
+          <h5>You don't have any flats yet.</h5>
+          <button class="btn-add-small" (click)="goToNewFlat()">
+            Add your first flat
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+<div class="page">
+  <div class="content">
+
+    <h2 class="page-title">Favourites</h2>
+
+    <div class="card-custom">
+      <div class="card-body-custom">
+
+        <table class="table-custom" *ngIf="favouriteFlats.length > 0; else noFavourites">
+          <thead>
+            <tr>
+              <th>City</th>
+              <th>Address</th>
+              <th>Area (m²)</th>
+              <th>Rent Price</th>
+              <th>Date Available</th>
+              <th>AC</th>
+              <th>Owner</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let flat of favouriteFlats">
+              <td>{{ flat.city }}</td>
+              <td>{{ flat.streetName }} {{ flat.streetNumber }}</td>
+              <td>{{ flat.areaSize }} m²</td>
+              <td class="price">${{ flat.rentPrice | number:'1.0-0' }}</td>
+              <td>{{ flat.dateAvailable | date:'mediumDate' }}</td>
+
+              <td>
+                <span class="badge"
+                  [class.badge-success]="flat.hasAC"
+                  [class.badge-neutral]="!flat.hasAC">
+                  {{ flat.hasAC ? 'Yes' : 'No' }}
+                </span>
+              </td>
+
+              <td>{{ flat.ownerName || 'Unknown' }}</td>
+
+              <td class="actions">
+                <button class="btn-view" (click)="viewFlat(flat.id)">
+                  👁️ View
+                </button>
+
+                <button class="btn-remove" (click)="removeFavourite(flat.id)">
+                  🗑️ Remove
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ng-template #noFavourites>
+          <div class="empty-state">
+            <h5>You don't have any favourite flats yet.</h5>
+            <a routerLink="/home" class="btn-primary">Go to Search Flats</a>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+
+  </div>
+</div>

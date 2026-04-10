@@ -1,0 +1,126 @@
+<app-header></app-header>
+
+<div class="page-container">
+  <div class="content-wrapper">
+
+    <div class="detail-card">
+      <div class="card-header">
+        <h3>Flat Details</h3>
+      </div>
+
+      <div class="card-body" *ngIf="flat; else noFlat">
+
+        <h4 class="property-title">
+          {{ flat.city }}, {{ flat.streetName }} {{ flat.streetNumber }}
+        </h4>
+
+        <table class="detail-table">
+          <tbody>
+            <tr>
+              <th>City</th>
+              <td>{{ flat.city }}</td>
+            </tr>
+            <tr>
+              <th>Street Name</th>
+              <td>{{ flat.streetName }}</td>
+            </tr>
+            <tr>
+              <th>Street Number</th>
+              <td>{{ flat.streetNumber }}</td>
+            </tr>
+            <tr>
+              <th>Area Size</th>
+              <td>{{ flat.areaSize }} m²</td>
+            </tr>
+            <tr>
+              <th>Has Air Conditioning</th>
+              <td>
+                <span class="status-badge" [class.success]="flat.hasAC" [class.secondary]="!flat.hasAC">
+                  {{ flat.hasAC ? 'Yes' : 'No' }}
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>Year Built</th>
+              <td>{{ flat.yearBuilt }}</td>
+            </tr>
+            <tr>
+              <th>Rent Price</th>
+              <td class="price">${{ flat.rentPrice | number:'1.0-0' }}/month</td>
+            </tr>
+            <tr>
+              <th>Date Available</th>
+              <td>{{ flat.dateAvailable | date:'mediumDate' }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="action-buttons">
+          <button *ngIf="isOwner" 
+                  class="btn-edit"
+                  (click)="editFlat()">
+            Edit Flat
+          </button>
+
+          <button class="btn-back"
+                  (click)="navigateToHome()">
+            Back to Search
+          </button>
+        </div>
+
+        <!-- 🔥 CONTACT FORM -->
+        <div class="contact-box">
+          <h4>Contact Owner</h4>
+
+          <!-- ✅ SUCCESS MESSAGE -->
+          <p *ngIf="successMessage" class="success-text">
+            Message sent successfully!
+          </p>
+
+          <form (ngSubmit)="sendMessage()" #messageForm="ngForm">
+            
+            <input 
+              type="text" 
+              placeholder="Your Name"
+              name="name"
+              [(ngModel)]="message.name"
+              required
+            />
+
+            <input 
+              type="email" 
+              placeholder="Your Email"
+              name="email"
+              [(ngModel)]="message.email"
+              required
+            />
+
+            <textarea 
+              placeholder="Your Message"
+              name="text"
+              [(ngModel)]="message.text"
+              rows="4"
+              required
+            ></textarea>
+
+            <button type="submit" class="btn-send">
+              Send Message
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+
+      <ng-template #noFlat>
+        <div class="empty-state">
+          <h5>Flat not found</h5>
+          <button class="btn-back" (click)="navigateToHome()">
+            Back to Home
+          </button>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</div>

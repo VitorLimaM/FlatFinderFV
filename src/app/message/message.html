@@ -1,0 +1,51 @@
+<div class="container mt-5" *ngIf="flat; else notFound">
+
+  <h2>{{ flat.city }}</h2>
+  <p><strong>Location:</strong> {{ flat.city }}, {{ flat.streetName }} {{ flat.streetNumber }}</p>
+  <p><strong>Price:</strong> ${{ flat.rentPrice }}</p>
+  <p><strong>Area:</strong> {{ flat.areaSize }} m²</p>
+  <p><strong>Description:</strong> {{ flat.description || 'No description provided.' }}</p>
+
+  <hr class="my-4">
+
+  <h3>Contact Seller</h3>
+
+  <div class="mb-3">
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Your Name"
+      [(ngModel)]="name">
+  </div>
+
+  <div class="mb-3">
+    <input 
+      type="email" 
+      class="form-control" 
+      placeholder="Your Email"
+      [(ngModel)]="email">
+  </div>
+
+  <div class="mb-3">
+    <textarea 
+      class="form-control" 
+      placeholder="Subject"
+      [(ngModel)]="subject">
+    </textarea>
+  </div>
+
+  <button class="btn btn-success" (click)="sendMessage()">
+    Send Message
+  </button>
+
+  <div *ngIf="successMessage" class="alert alert-success mt-3">
+    Message sent successfully! ✅
+  </div>
+
+</div>
+
+<ng-template #notFound>
+  <div class="alert alert-danger mt-5 text-center">
+    Flat not found or flatId not provided. ❌
+  </div>
+</ng-template>

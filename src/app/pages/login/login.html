@@ -1,0 +1,37 @@
+<div class="login-container">
+  <h2>WELCOME! </h2>
+
+  <div class="logo-container">
+    <img src="/images/transparent-logo.png"  alt="FlatFinder Logo" class="logo">
+  </div>
+
+  <div class="input-group">
+    <input 
+      type="email" 
+      placeholder=" E-mail Adress " 
+      [(ngModel)]="email"
+      (input)="loginError=false"
+    >
+  </div>
+
+  <div class="input-group">
+    <input 
+      type="password" 
+      placeholder=" Password" 
+      [(ngModel)]="password"
+      (input)="loginError=false"
+    >
+  </div>
+
+  <button (click)="login()">JOIN NOW! 🚀</button>
+
+  <!-- Mensagem de erro -->
+@if (loginError) {
+  <p class="error">Incorrect email or password ❌</p>
+}
+
+  <div class="register-link">
+    DONT HAVE AN ACCOUNT? 
+    <a routerLink="/register">SIGN UP</a>
+  </div>
+</div>
